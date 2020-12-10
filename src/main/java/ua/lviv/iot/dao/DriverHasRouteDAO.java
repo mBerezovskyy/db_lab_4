@@ -1,12 +1,10 @@
 package ua.lviv.iot.dao;
 
 import ua.lviv.iot.connection.DbConnector;
-//import ua.lviv.iot.model.DriverHasBus;
 import ua.lviv.iot.model.DriverHasRoute;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +19,17 @@ public class DriverHasRouteDAO implements GeneralDAO<DriverHasRoute> {
   private static final String DELETE = "DELETE FROM fixbus_db.driver_has_route WHERE id=?";
 
   @Override
-  public List<DriverHasRoute> findAll() throws SQLException {
-    List<DriverHasRoute> driversRoute = new ArrayList<DriverHasRoute>();
+  public List<DriverHasRoute> findAll() {
+    List<DriverHasRoute> driversRoute = new ArrayList<>();
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(SELECT_ALL)) {
       System.out.println(ps);
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
-        DriverHasRoute usersTicket = new DriverHasRoute(
+        DriverHasRoute driverHasRoute = new DriverHasRoute(
             resultSet.getInt("id"),
             resultSet.getInt("driver_id"),
             resultSet.getInt("route_id"));
-        driversRoute.add(usersTicket);
+        driversRoute.add(driverHasRoute);
       }
     } catch (Exception exception) {
       exception.printStackTrace();
@@ -40,13 +38,13 @@ public class DriverHasRouteDAO implements GeneralDAO<DriverHasRoute> {
   }
 
   @Override
-  public DriverHasRoute findById(Integer id) throws SQLException {
-    DriverHasRoute driversRoute = null;
+  public DriverHasRoute findById(Integer id) {
+    DriverHasRoute driverHasRoute = null;
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(SELECT_ONE)) {
       ps.setInt(1, id);
       ResultSet resultSet = ps.executeQuery();
       while (resultSet.next()) {
-        driversRoute = new DriverHasRoute(
+        driverHasRoute = new DriverHasRoute(
             resultSet.getInt("id"),
             resultSet.getInt("driver_id"),
             resultSet.getInt("route_id"));
@@ -54,11 +52,11 @@ public class DriverHasRouteDAO implements GeneralDAO<DriverHasRoute> {
     } catch (Exception exception) {
       exception.printStackTrace();
     }
-    return driversRoute;
+    return driverHasRoute;
   }
 
   @Override
-  public void create(DriverHasRoute newDriverHasRoute) throws SQLException {
+  public void create(DriverHasRoute newDriverHasRoute) {
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(CREATE)) {
       ps.setInt(1, newDriverHasRoute.getDriverId());
       ps.setInt(2, newDriverHasRoute.getRouteId());
@@ -71,7 +69,7 @@ public class DriverHasRouteDAO implements GeneralDAO<DriverHasRoute> {
   }
 
   @Override
-  public void update(Integer id, DriverHasRoute newDriverHasRoute) throws SQLException {
+  public void update(Integer id, DriverHasRoute newDriverHasRoute) {
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(UPDATE)) {
       ps.setInt(3, id);
       ps.setInt(1, newDriverHasRoute.getDriverId());
@@ -86,7 +84,7 @@ public class DriverHasRouteDAO implements GeneralDAO<DriverHasRoute> {
   }
 
   @Override
-  public void delete(Integer id) throws SQLException {
+  public void delete(Integer id) {
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(DELETE)) {
       ps.setInt(1, id);
       System.out.println(ps);

@@ -22,8 +22,8 @@ public class RouteDAO implements GeneralDAO<Route> {
 
 
   @Override
-  public List<Route> findAll() throws SQLException {
-    List<Route> routes = new ArrayList<Route>();
+  public List<Route> findAll(){
+    List<Route> routes = new ArrayList<>();
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(SELECT_ALL)) {
       System.out.println(ps);
       ResultSet resultSet = ps.executeQuery();
@@ -42,7 +42,7 @@ public class RouteDAO implements GeneralDAO<Route> {
   }
 
   @Override
-  public Route findById(Integer id) throws SQLException {
+  public Route findById(Integer id) {
     Route route = null;
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(SELECT_ONE)) {
       ps.setInt(1, id);
@@ -62,7 +62,7 @@ public class RouteDAO implements GeneralDAO<Route> {
   }
 
   @Override
-  public void create(Route newRoute) throws SQLException {
+  public void create(Route newRoute) {
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(CREATE)) {
       ps.setInt(1, newRoute.getTotalFare());
       ps.setInt(2, newRoute.getStartingStopId());
@@ -77,7 +77,7 @@ public class RouteDAO implements GeneralDAO<Route> {
 
 
   @Override
-  public void update(Integer id, Route updatedRoute) throws SQLException {
+  public void update(Integer id, Route updatedRoute){
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(UPDATE)) {
       ps.setInt(1, updatedRoute.getTotalFare());
       ps.setInt(2, updatedRoute.getStartingStopId());
@@ -92,7 +92,7 @@ public class RouteDAO implements GeneralDAO<Route> {
   }
 
   @Override
-  public void delete(Integer id) throws SQLException {
+  public void delete(Integer id){
     try (PreparedStatement ps = DbConnector.getConnection().prepareStatement(DELETE)) {
       ps.setInt(1, id);
       System.out.println(ps);
