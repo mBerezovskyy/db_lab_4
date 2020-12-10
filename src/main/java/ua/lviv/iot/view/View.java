@@ -283,9 +283,8 @@ public class View {
     System.out.println("\nEnter id of manufacturer to update: ");
     Integer id = scanner.nextInt();
     Manufacturer manufacturer = getManufacturerValues();
-    manufacturer.setId(id);
 
-    manufacturerController.update(manufacturer.getId(), manufacturer);
+    manufacturerController.update(id, manufacturer);
     System.out.println("Updated \n");
   }
 
@@ -293,7 +292,6 @@ public class View {
     System.out.println("\nEnter id of bus to update it: ");
     Integer id = scanner.nextInt();
     Bus bus = getBusValues();
-
 
     busController.update(id, bus);
     System.out.println("Updated \n");
@@ -312,9 +310,8 @@ public class View {
     System.out.println("\nEnter id of stop to update: ");
     Integer id = scanner.nextInt();
     Stop stop = getStopValues();
-    stop.setId(id);
 
-    stopController.update(stop.getId(), stop);
+    stopController.update(id, stop);
     System.out.println("Updated \n");
   }
 
@@ -332,14 +329,13 @@ public class View {
     System.out.println("\nEnter id of route to update it: ");
     Integer id = scanner.nextInt();
     Route route = getRouteValues();
-    route.setId(id);
 
-    routeController.update(route.getId(), route);
+    routeController.update(id, route);
     System.out.println("Updated \n");
   }
 
   private void deleteRoute() throws SQLException {
-    System.out.println("\nEnter ID of airline to delete it: ");
+    System.out.println("\nEnter ID of route to delete it: ");
     int id = scanner.nextInt();
 
     routeController.delete(id);

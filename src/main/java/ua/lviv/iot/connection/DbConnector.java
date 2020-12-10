@@ -11,8 +11,7 @@ public class DbConnector {
   private static final String PASSWORD = "1527956";
   private static Connection CONNECTION = null;
 
-  private DbConnector() {
-  }
+
 
   public static Connection getConnection() {
     try {
