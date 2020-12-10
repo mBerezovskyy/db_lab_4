@@ -79,9 +79,8 @@ public class View {
     System.out.println("\nEnter id of driver with route to update: ");
     Integer id = scanner.nextInt();
     DriverHasRoute driverHasRoute = getDriverHasRouteValues();
-    driverHasRoute.setId(id);
 
-    driverHasRouteController.update(driverHasRoute.getId(), driverHasRoute);
+    driverHasRouteController.update(id, driverHasRoute);
     System.out.println("Updated \n");
   }
 
@@ -319,9 +318,8 @@ public class View {
     System.out.println("\nEnter id of driver with bus to update: ");
     Integer id = scanner.nextInt();
     DriverHasBus driverHasBus = getDriverHasBusValues();
-    driverHasBus.setId(id);
 
-    driverHasBusController.update(driverHasBus.getId(), driverHasBus);
+    driverHasBusController.update(id, driverHasBus);
     System.out.println("Updated \n");
   }
 
